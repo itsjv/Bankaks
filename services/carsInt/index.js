@@ -1,7 +1,20 @@
 const express = require("express");
 const fs = require("fs");
 
+const db = require('./database');
+const mysql = require('mysql');
+const bodyParser = require('body-parser');
 const app = express();
+
+const cors = require('cors');
+//database connectivity
+app.use(cors());
+db.connect((err) => {
+  if(err) {
+      throw err;  
+  }
+  console.log("database is connected ")
+} )
 
 app.get("/", (req, res, next) => {
   res.status(200).json({
@@ -12,46 +25,41 @@ app.get("/", (req, res, next) => {
 });
 
 app.get("/cars", (req, res, next) => {
-  const rawdata = fs.readFileSync("data.json");
 
-  const data = JSON.parse(rawdata);
-
-  res.status(200).json({
-    status: "success",
-    message: "",
-    data: data.cars,
+  let sqlshow_show_data = "SELECT * FROM cars ";
+  let query = db.query(sqlshow_show_data,  (err, cars_results) => {
+      if (err) throw err;
+      res.status(200).json({
+        status: "success",
+        message: "All the cars and their info",
+        data: cars_results,
+      });
   });
 });
 
 app.get("/cars/:id", (req, res, next) => {
-  const rawdata = fs.readFileSync("data.json");
+  
+  var car_id = req.params.id
+  let sqlshow_show_data = "SELECT * FROM cars WHERE id = ? ";
+  let query = db.query(sqlshow_show_data, [car_id], (err, found) => {
+      if (err) throw err;
 
-  const data = JSON.parse(rawdata);
-
-  const found = data.cars.find((car) => {
-    return car.id === req.params.id;
-  });
-
-  if (!found) {
-    res.status(404).json({
-      status: "failed",
-      message: `Failed to find the car with id ${req.params.id}`,
-      data: {},
-    });
-  }
-
-  res.status(200).json({
-    status: "success",
-    message: "",
-    data: found,
+      if (!found || found == []) {
+        res.status(404).json({
+          status: "failed",
+          message: `Failed to find the car with id ${req.params.id}`,
+          data: {},
+        });
+      }   
+      res.status(200).json({
+        status: "success",
+        message: "",
+        data: found[0],
+      });
   });
 });
 
-app.use((req, res, next) => {
-  const err = new Error("Not Found");
-  err.status = 404;
-  next(err);
-});
+
 
 function normalizePort(val) {
   const port = parseInt(val, 10);

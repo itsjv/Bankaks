@@ -1,0 +1,23 @@
+version: "3.7"
+
+services:
+  carsint:
+      build: ./services/carsInt/
+      command: node index.js
+      ports:
+        - 3000:3000
+      working_dir: /app
+      volumes:
+        - ./services/carsInt/:/app
+  
+  
+  carsext:
+      build: ./services/carsExt/
+      command: node index.js
+      ports:
+        - 3001:3001
+      working_dir: /app
+      volumes:
+        - ./services/carsExt/:/app
+        
+
