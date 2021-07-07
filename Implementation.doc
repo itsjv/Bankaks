@@ -44,7 +44,7 @@ Database used :
 
 EC2 Virtual Machine used :
 
-   A) I've used AWS EC2 t2.micro instance to deploy the containers.
+   A) I've used AWS EC2 t2.micro instance with Ubuntu 20.04 OS to deploy the containers.
 
    B) I've installed docker on the server as it will be required to run the docker services.
 
