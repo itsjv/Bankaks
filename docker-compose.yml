@@ -1,6 +1,10 @@
+# Version of docker-compose
 version: "3.7"
 
+# Declaring the services, i.e, the containers
 services:
+
+# Declaring a container and its build location, port, working directory and the volumes it will be mapped inside the container.
   carsint:
       build: ./services/carsInt/
       command: node index.js
@@ -10,7 +14,7 @@ services:
       volumes:
         - ./services/carsInt/:/app
   
-  
+# Declaring a container and its build location, port, working directory and the volumes it will be mapped inside the container. 
   carsext:
       build: ./services/carsExt/
       command: node index.js

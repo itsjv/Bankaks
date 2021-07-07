@@ -1,0 +1,72 @@
+# Bankaks Hiring Challenge
+
+## Tasks
+#### 1. Dockerize, customise and deploy microservices
+
+Observation :
+  A) The node code provided in directory "services/carsInt" is designed to extract data from file named "data.json" which is static file in the directory itself.
+  
+  B) As mentioned in README.md, I could understand that we need to have a remote data store (I assumed it to be AWS RDS here) for storing the data provided in the file
+     "data.json" and then read and write data to that remote datatbase.
+  
+  C) I don't have much experience with node but I could observe the code provided, it is meant to serve static data source i.e., the "data.json" file.
+  
+  D) However as much I could, I changed few things in "cardInt" to make the the server read from the remote databse dynamically.
+  
+  E) To meet the desired requiredment, I suppose the whole code needs to be revamped to suit the read as well as write form remote datatbase.
+
+  F) Similar to "carsInt", few tweaks maybe required for "carsExt" as well.
+
+  G) However, for the main job i.e., to Dockerize these servers, I've added Dockerfile and datatbase.js file to both the directories. I've also made few changes in "index.js"
+      file of "carsInt".
+
+  H) I've added a docker-compose.yml file that will ensure that both the containers are up and running.
+     
+  I) Use the command "sudo docker-compose up -d" and in few minutes you'll have two containers up and running. You'll be able to check the containers using 
+     "sudo docker ps"
+
+  J) The "carsInt" directory container will be running on port 3000 and "carsExt" directory container on port 3001 of your server.
+
+
+#### 2. Remote Data Store
+
+Database used :
+  A) I've used AWS RDS MySQL database for storing the data provided in "data.json" file.
+
+  B) These are the following credentials for the database incase you want to verify :
+     host: "project.cpvf71ejomwc.us-east-1.rds.amazonaws.com",
+     user: "project",
+     port:3306,
+     password: "Project123",
+     database: "bankaks"
+
+#### 3. Remote server used to Deploy this containers
+
+EC2 Virtual Machine used :
+
+   A) I've used AWS EC2 t2.micro instance to deploy the containers.
+
+   B) I've installed docker on the server as it will be required to run the docker services.
+
+   C) Following is the details of the server :
+      IP : 54.147.240.183
+
+   D) Use 54.147.240.183:3000 to connect to "carsInt" container and 54.147.240.183:3001 to connect to "carsExt" container.
+
+NOTE : Since all these details regarding AWS resources will be in public Repository, I will delete these resources soon. 
+       Please let me know is this needs to be retained.
+
+
+
+
+Additional Observations :
+ A) If read and write needs to be done in internal microservice than changes to code shall be made 
+    and a tool such as "POSTMAN" will be required to write data on the database.
+ 
+ B) I can improve the conterization of this NodeJS code but it needs to be altered for dynamically read and write.
+    And I suppose as NodeJS can do it way better than me.
+
+
+   
+
+  
