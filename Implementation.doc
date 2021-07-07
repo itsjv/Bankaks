@@ -23,7 +23,7 @@ Observation :
   H) I've added a docker-compose.yml file that will ensure that both the containers are up and running at one go.
      
   I) Use the command "sudo docker-compose up -d" and in few minutes you'll have two containers up and running. You'll be able to check the containers using 
-     "sudo docker ps". To destroy the images and containers created, use "sudo docker-compose down" command.
+     "sudo docker ps". To destroy the containers created, use "sudo docker-compose down" command.
 
   J) The "carsInt" directory container will be running on port 3000 and "carsExt" directory container on port 3001 of your server.
 
