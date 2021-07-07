@@ -11,16 +11,16 @@ Observation :
   
   C) I don't have much experience with node but I could observe the code provided, it is meant to serve static data source i.e., the "data.json" file.
   
-  D) However as much I could, I changed few things in "cardInt" to make the the server read from the remote databse dynamically.
+  D) However as much I could, I changed few things in "carsInt" to make the the server read from the remote database dynamically in real time.
   
-  E) To meet the desired requiredment, I suppose the whole code needs to be revamped to suit the read as well as write form remote datatbase.
+  E) To meet the desired requirement, I suppose the whole code needs to be revamped to suit the read as well as write from remote datatbase.
 
   F) Similar to "carsInt", few tweaks maybe required for "carsExt" as well.
 
-  G) However, for the main job i.e., to Dockerize these servers, I've added Dockerfile and datatbase.js file to both the directories. I've also made few changes in "index.js"
-      file of "carsInt".
+  G) However, for the main job i.e., to Dockerize these servers, I've added Dockerfile and datatbase.js file to both the directories. 
+     I've also made few changes in "index.js" file of "carsInt".
 
-  H) I've added a docker-compose.yml file that will ensure that both the containers are up and running.
+  H) I've added a docker-compose.yml file that will ensure that both the containers are up and running at one go.
      
   I) Use the command "sudo docker-compose up -d" and in few minutes you'll have two containers up and running. You'll be able to check the containers using 
      "sudo docker ps". To destroy the images and containers created, use "sudo docker-compose down" command.
@@ -46,7 +46,7 @@ EC2 Virtual Machine used :
 
    A) I've used AWS EC2 t2.micro instance with Ubuntu 20.04 OS to deploy the containers.
 
-   B) I've installed docker on the server as it will be required to run the docker services.
+   B) I've installed docker and docker compose on the server as it will be required to run the docker services.
 
    C) Following is the details of the server :
       IP : 54.147.240.183
@@ -54,7 +54,8 @@ EC2 Virtual Machine used :
    D) Use 54.147.240.183:3000 to connect to "carsInt" container and 54.147.240.183:3001 to connect to "carsExt" container.
 
 NOTE : Since all these details regarding AWS resources will be in public Repository, I will delete these resources soon. 
-       Please let me know is this needs to be retained.
+       Please let me know is this needs to be retained. You can run the same code on your server as well only with docker and 
+       docker compose needs to be installed on it.
 
 
 
@@ -64,7 +65,7 @@ Additional Observations :
     and a tool such as "POSTMAN" will be required to write data on the database.
  
  B) I can improve the conterization of this NodeJS code but it needs to be altered for dynamically read and write.
-    And I suppose as NodeJS can do it way better than me.
+    And I suppose a NodeJS developer can do it way better than me.
 
 
    
